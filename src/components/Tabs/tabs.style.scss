@@ -1,0 +1,26 @@
+.tabs-wrapper {
+  .tab-section {
+    @apply w-full;
+    @apply font-normal;
+    @apply text-center;
+
+    @apply transition-colors;
+    @apply duration-100;
+
+    @apply text-gray-500;
+    @apply border-b-[1px];
+    @apply border-gray-300;
+    @apply cursor-pointer;
+
+    p {
+      @apply mb-2;
+    }
+  }
+
+  .active {
+    @apply font-semibold;
+    @apply text-privy;
+    @apply border-b-[3px];
+    @apply border-privy;
+  }
+}

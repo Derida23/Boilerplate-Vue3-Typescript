@@ -1,0 +1,54 @@
+.input-wrapper {
+  @apply mb-5;
+
+  label {
+    @apply text-[14px];
+    @apply mb-2;
+  }
+  .input-box {
+    @apply mt-1;
+    @apply relative;
+
+    .input-component {
+      @apply appearance-none;
+      @apply outline-none;
+      @apply w-full;
+      @apply h-[40px];
+
+      @apply py-2;
+      @apply px-3;
+      @apply rounded-[100px];
+      @apply border;
+      @apply border-gray-500;
+
+      &:focus {
+        @apply border-primary;
+      }
+
+      &:placeholder {
+        @apply text-gray-100;
+        @apply text-[13px];
+      }
+    }
+
+    &.has-error {
+      .input-component {
+        @apply border-privy;
+        @apply animate-shake;
+      }
+    }
+  }
+
+  .error {
+    @apply mt-1;
+    @apply flex;
+    @apply text-privy;
+    @apply text-xs;
+    @apply items-center;
+    @apply animate-shake;
+
+    .error-icon {
+      @apply mr-2;
+    }
+  }
+}

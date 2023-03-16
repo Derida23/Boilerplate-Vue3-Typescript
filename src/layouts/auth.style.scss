@@ -1,0 +1,66 @@
+.logo {
+  @apply flex;
+  @apply items-center;
+  @apply pl-[100px];
+  @apply pt-[100px];
+  @apply mb-6;
+
+  &-privy {
+    @apply text-privy;
+    @apply w-[60px];
+    @apply self-center;
+  }
+
+  &-text {
+    @apply text-privy;
+    @apply text-[32px];
+    @apply font-semibold;
+    @apply ml-2;
+  }
+}
+
+.auth-wrapper {
+  @apply grid;
+  @apply grid-cols-2;
+
+  .info-section {
+    @apply flex;
+    @apply justify-center;
+    @apply items-start;
+
+    .info-box {
+      @apply pl-[100px];
+
+      .auth-title {
+        @apply text-black;
+        @apply font-bold;
+        @apply text-[32px];
+      }
+
+      .auth-description {
+        @apply mt-3;
+        @apply text-[24px];
+      }
+    }
+  }
+
+  .card-section {
+    @apply px-[100px];
+
+    .card-box {
+      @apply rounded-[16px];
+      @apply p-10;
+
+      box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.07);
+
+      .card-today {
+        @apply text-[16px];
+        @apply font-semibold;
+      }
+
+      .card-content {
+        @apply mt-10;
+      }
+    }
+  }
+}

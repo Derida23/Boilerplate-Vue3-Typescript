@@ -1,0 +1,9 @@
+.login-wrapper {
+  .text-box {
+    @apply my-6;
+
+    .text-login {
+      @apply font-semibold;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    font-family: Inter, sans-serif;
+  }
+}
+
+.slide-fade-enter-active {
+  @apply transition-all;
+  @apply delay-75;
+  @apply ease-out;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  @apply translate-x-8;
+  @apply opacity-0;
+}
