@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TextInput from "@/components/Input";
+import Button from "@/components/Button";
 </script>
 
 <template>
@@ -19,6 +20,8 @@ import TextInput from "@/components/Input";
       name="password"
       placeholder="Password"
     />
+    <Button variant="privy" class="mt-7 mb-2">Login</Button>
+    <Button variant="reset" :outlined="true">Reset</Button>
   </div>
 </template>
 

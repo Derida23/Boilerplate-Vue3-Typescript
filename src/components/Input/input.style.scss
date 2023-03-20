@@ -1,5 +1,5 @@
 .input-wrapper {
-  @apply mb-5;
+  @apply mb-2;
 
   label {
     @apply text-[14px];
@@ -20,13 +20,13 @@
       @apply rounded-[100px];
       @apply border;
       @apply border-gray-500;
+      @apply text-[13px];
 
       &:focus {
         @apply border-primary;
       }
 
-      &:placeholder {
-        @apply text-gray-100;
+      &::placeholder {
         @apply text-[13px];
       }
     }

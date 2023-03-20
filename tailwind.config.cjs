@@ -11,6 +11,7 @@ module.exports = {
         primary: "#5ABBAD",
         black: "#0F0E0E",
         privy: "#E42E2C",
+        reset: "#818191",
       },
       animation: {
         shake: "shake 0.2s ease-in-out 0s 2",

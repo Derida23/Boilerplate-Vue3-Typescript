@@ -1,0 +1,60 @@
+$variants: "privy", "reset";
+
+.button-wrapper {
+  button {
+    @apply w-full;
+    @apply h-[40px];
+    @apply rounded-[100px];
+    @apply text-[14px];
+    @apply mb-2;
+
+    @each $variant in $variants {
+      &.#{$variant} {
+        @apply bg-#{$variant};
+        @apply text-white;
+        @apply border;
+        @apply border-transparent;
+
+        @media (hover: hover) {
+          &:hover {
+            @apply brightness-90;
+          }
+        }
+
+        &:active {
+          @apply brightness-75;
+        }
+      }
+
+      &.#{$variant}-outlined {
+        @apply bg-transparent;
+        @apply text-#{$variant};
+        @apply border;
+        @apply border-#{$variant};
+
+        @media (hover: hover) {
+          &:hover {
+            @apply bg-#{$variant};
+            @apply brightness-90;
+            @apply text-white;
+          }
+        }
+
+        &:active {
+          @apply text-white;
+          @apply brightness-75;
+        }
+      }
+    }
+
+    &.loading {
+      @apply opacity-50;
+    }
+    
+    &:disabled {
+      @apply opacity-50;
+      @apply cursor-not-allowed;
+      @apply pointer-events-none;
+    }
+  }
+}
