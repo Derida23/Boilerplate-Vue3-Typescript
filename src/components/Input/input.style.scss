@@ -37,6 +37,21 @@
         @apply animate-shake;
       }
     }
+
+    .input-icon {
+      @apply text-reset;
+      @apply h-[1.125rem];
+      @apply w-[1.125rem];
+      @apply absolute;
+      @apply top-1/2;
+      @apply right-3;
+      @apply cursor-pointer;
+      @apply -translate-y-1/2;
+
+      &.active {
+        @apply text-primary;
+      }
+    }
   }
 
   .error {

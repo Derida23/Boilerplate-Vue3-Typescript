@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { PropType } from "vue";
+import { PropType, ref, computed } from "vue";
 import { Field, ErrorMessage } from "vee-validate";
+import EyeIcon from "@/assets/icon/eye-icon.vue";
 
 const props = defineProps({
   label: {
@@ -24,19 +25,44 @@ const props = defineProps({
     default: null,
   },
 });
+
+const password = ref<boolean>(false);
+
+const onShowPassword = (): void => {
+  password.value = !password.value;
+};
+
+const inputType = computed<string>(() => {
+  if (props.type === "password" && password.value) {
+    return "text";
+  }
+
+  return props.type;
+});
 </script>
 
 <template>
   <Field v-slot="{ field, errors }" :label="label" :name="name">
     <div class="input-wrapper">
       <label>{{ label }}</label>
-      <div class="input-box">
+      <div :class="['input-box', { 'has-error': errors.length }]">
         <input
           v-bind="field"
           class="input-component"
           :id="id"
           :placeholder="placeholder"
-          :type="type"
+          :type="inputType"
+        />
+
+        <EyeIcon
+          v-if="type === 'password'"
+          :class="[
+            'input-icon',
+            {
+              active: password,
+            },
+          ]"
+          @click="onShowPassword"
         />
       </div>
       <ErrorMessage v-slot="{ message }" :name="name">
