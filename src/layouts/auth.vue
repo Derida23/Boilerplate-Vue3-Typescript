@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import PrivyIcon from "@/assets/icon/privy-icon.vue";
 import { format } from "date-fns";
-import { computed, markRaw, ref, watch } from "vue";
 import Tabs from "@/components/Tabs";
 import { ITabOptions } from "./auth.type";
 import { useRoute, useRouter } from "vue-router";
+import { computed, markRaw, ref, watch } from "vue";
 
 const router = useRouter();
 const route = useRoute();
@@ -22,11 +22,16 @@ const tabOptions: Array<ITabOptions> = markRaw([
   },
 ]);
 
-watch(activeTab, (value) =>
+watch(activeTab, (value) => {
   router.push({
     name: value,
-  })
-);
+  });
+});
+
+watch(route, (value) => {
+  const split = value.path.split("/")[2];
+  activeTab.value = split;
+});
 
 const today = computed(() => {
   return format(new Date(), "MMM dd, yyyy");

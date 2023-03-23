@@ -14,6 +14,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  type: {
+    type: String as PropType<"button" | "submit" | "reset">,
+    default: "button",
+  },
 });
 
 const buttonClass = computed(() => {
@@ -25,11 +29,17 @@ const buttonClass = computed(() => {
 
   return [className, { loading: props.loading }];
 });
+
+const emit = defineEmits(["click"]);
+
+const onClick = (event: Event) => {
+  emit("click", event);
+};
 </script>
 
 <template>
   <div class="button-wrapper">
-    <button :class="buttonClass">
+    <button :class="buttonClass" @click="onClick" :type="props.type">
       <span><slot /></span>
     </button>
   </div>
