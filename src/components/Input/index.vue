@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PropType, ref, computed } from "vue";
+import { PropType, ref, computed, Directive } from "vue";
 import { Field, ErrorMessage } from "vee-validate";
 import EyeIcon from "@/assets/icon/eye-icon.vue";
 
@@ -47,6 +47,16 @@ const inputType = computed<string>(() => {
       <label>{{ label }}</label>
       <div :class="['input-box', { 'has-error': errors.length }]">
         <input
+          v-if="name === 'phone_number'"
+          v-bind="field"
+          class="input-component"
+          :id="id"
+          :placeholder="placeholder"
+          :type="inputType"
+          v-phone
+        />
+        <input
+          v-else
           v-bind="field"
           class="input-component"
           :id="id"
