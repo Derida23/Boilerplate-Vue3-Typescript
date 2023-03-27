@@ -22,6 +22,7 @@
     "@types/node": "^18.15.3",
     "@vitejs/plugin-vue": "^4.0.0",
     "autoprefixer": "^10.4.14",
+    "dotenv": "^16.0.3",
     "postcss": "^8.4.21",
     "sass": "^1.59.2",
     "tailwindcss": "^3.2.7",

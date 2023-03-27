@@ -1,19 +1,19 @@
 
-// import useAxios from "@/composable/useAxios";
-// import { onMounted, ref } from "vue";
+import useAxios from "@/composable/useAxios";
+import { onMounted, ref } from "vue";
 
-// const pokemon = ref<any>(null);
-// const fetch = async () => {
-//   const { status, response, error, request } = useAxios();
+const pokemon = ref<any>(null);
+const fetch = async () => {
+  const { status, response, error, request } = useAxios();
 
-//   await request({
-//     url: "https://pokeapi.co/api/v2",
-//     method: "GET",
-//   });
+  await request({
+    url: "/api/v1/oauth/sign_in",
+    method: "POST",
+  });
 
-//   pokemon.value = response;
-// };
+  
+};
 
-// onMounted(async () => {
-//   await fetch();
-// });
+onMounted(async () => {
+  await fetch();
+});
