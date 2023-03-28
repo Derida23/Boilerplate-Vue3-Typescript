@@ -6,10 +6,14 @@ import { ref } from "vue";
 import { IForm } from "./login.type";
 import schema from "@/validations/loginSchema";
 import { useAuthStore } from "@/store/auth";
+import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
 
 const form = ref<FormContext>();
 
 const { login } = useAuthStore();
+const { user } = storeToRefs(useAuthStore());
+const router = useRouter();
 
 const onLogin = async (value: Record<string, unknown>): Promise<void> => {
   const data: IForm = {
@@ -21,6 +25,10 @@ const onLogin = async (value: Record<string, unknown>): Promise<void> => {
   };
 
   await login(data);
+
+  if (user) {
+    router.push({ path: "/profile" });
+  }
 };
 </script>
 

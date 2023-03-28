@@ -28,12 +28,14 @@ export const useAuthStore = defineStore("auth", {
         url: API.login,
         method: "POST",
         params,
-        onSuccess: async (res: IAuthRes<ILogin>): Promise<void> => {
+        onSuccess: async (res: IAuthRes<ILogin>): Promise<boolean> => {
           const token: string = res.user.access_token;
           Cookies.set("session", token, { expires: 7, path: "/" });
 
           await this.credential();
           this.loading = false;
+
+          return true
         },
         onError: (err) => {
           this.error = true;
@@ -57,6 +59,7 @@ export const useAuthStore = defineStore("auth", {
           this.loading = false;
         },
         onError: (err) => {
+          this.fetcher = false
           this.error = true;
           this.error_notification = err.message;
           this.loading = false;

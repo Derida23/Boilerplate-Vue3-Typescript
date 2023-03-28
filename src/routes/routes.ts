@@ -1,11 +1,15 @@
+import { authGuard, mainGuard } from "@/middleware/authentication";
 import { RouteRecordRaw } from "vue-router";
-import { authentication, mainAuth } from "@/middleware/authentication";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/auth",
     component: () => import("@/layouts/auth.vue"),
-    beforeEnter: mainAuth(),
+    name: "auth",
+    beforeEnter: authGuard,
+    redirect: {
+      name: "login",
+    },
     children: [
       {
         path: "/auth/login",
@@ -27,12 +31,21 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     component: () => import("@/layouts/main.vue"),
-    beforeEnter: authentication(),
+    name: "main",
+    beforeEnter: mainGuard,
+    redirect: {
+      name: "profile",
+    },
     children: [
       {
-        path: "/main",
-        name: "main",
-        component: () => import("@/views/main/index.vue"),
+        path: "/profile",
+        name: "profile",
+        component: () => import("@/views/main/profile/index.vue"),
+      },
+      {
+        path: "/career",
+        name: "career",
+        component: () => import("@/views/main/career/index.vue"),
       },
     ],
   },
