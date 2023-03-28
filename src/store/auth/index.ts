@@ -2,6 +2,7 @@ import useAxios from "@/composable/useAxios";
 import { defineStore } from "pinia";
 import { RAuth } from "./auth.type";
 import { IForm } from "@/views/auth/login/login.type";
+import Cookies from 'js-cookie'
 
 export const useAuthStore = defineStore("auth", {
   state: (): RAuth => {
@@ -23,12 +24,18 @@ export const useAuthStore = defineStore("auth", {
       await request({
         url: "/api/v1/oauth/sign_in",
         method: "POST",
-        data: params,
-        onSuccess: (response) => console.log("Request succeeded!", response),
-        onError: (error) => console.log("Request failed!", error),
+        params,
+        onSuccess: (res) => {
+          const token: string = res.user.access_token
+          Cookies.set('session', token, { expires: 7, path: '/' })
+          this.loading = false;
+        },
+        onError: (err) => {
+          this.error = true;
+          this.error_notification = err.message;
+          this.loading = false;
+        },
       });
-
-      this.loading = false;
     },
   },
 });

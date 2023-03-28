@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import { reactive, toRefs } from "vue";
+import { reactive } from "vue";
 import { AxiosRequestConfig, AxiosError, AxiosResponse } from "axios";
 import axios from "@/plugins/axiosInstance";
 
@@ -19,7 +19,7 @@ export interface ErrorType {
 interface Result<K> {
   status: Status;
   data: AxiosRequestConfig["data"];
-  error: ErrorType | null
+  error: ErrorType | null;
 }
 
 interface Options {
@@ -28,14 +28,14 @@ interface Options {
   data?: AxiosRequestConfig["data"];
   params?: AxiosRequestConfig["params"];
   headers?: AxiosRequestConfig["headers"];
-  onSuccess?: (response: AxiosResponse) => void;
+  onSuccess?: (response: any) => void;
   onError?: (error: ErrorType) => void;
 }
 export default function useAxios<T>() {
   const result = reactive<Result<T>>({
     status: Status.IDLE,
     data: null,
-    error: null
+    error: null,
   });
 
   async function request({
@@ -46,7 +46,6 @@ export default function useAxios<T>() {
     onSuccess = () => {},
     onError = () => {},
   }: Options) {
-
     result.status = Status.LOADING;
 
     try {
@@ -70,12 +69,11 @@ export default function useAxios<T>() {
         message: response?.data.error.errors,
         code: response.status,
       };
+      result.error = error;
 
       onError(error);
-    } finally {
-      result.status = Status.SUCCESS;
     }
   }
 
-  return { ...toRefs(result), request };
+  return { ...result, request };
 }
