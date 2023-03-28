@@ -1,4 +1,7 @@
 export interface IForm {
-  phone_number: string;
-  password: string
+  phone: string | unknown;
+  password: string | unknown;
+  latlong: number;
+  device_token: number;
+  device_type: number;
 }

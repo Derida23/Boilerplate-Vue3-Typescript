@@ -5,12 +5,22 @@ import { Form, FormContext } from "vee-validate";
 import { ref } from "vue";
 import { IForm } from "./login.type";
 import schema from "@/validations/loginSchema";
-import { phone } from "@/utils/directive";
+import { useAuthStore } from "@/store/auth";
 
 const form = ref<FormContext>();
 
-const onLogin = (value: IForm | unknown): void => {
-  console.log("login", value);
+const { login } = useAuthStore();
+
+const onLogin = async (value: Record<string, unknown>): Promise<void> => {
+  const data: IForm = {
+    phone: value.phone_number,
+    password: value.password,
+    latlong: 62,
+    device_token: Math.random(),
+    device_type: 2,
+  };
+
+  await login(data);
 };
 </script>
 
