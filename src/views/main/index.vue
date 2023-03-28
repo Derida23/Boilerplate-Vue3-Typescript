@@ -11,9 +11,7 @@ const fetch = async () => {
   });
 };
 
-onMounted(async () => {
-  await fetch();
-});
+onMounted(async () => {});
 </script>
 
 <template>

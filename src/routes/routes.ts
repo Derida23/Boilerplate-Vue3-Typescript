@@ -1,9 +1,11 @@
 import { RouteRecordRaw } from "vue-router";
+import { authentication, mainAuth } from "@/middleware/authentication";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/auth",
     component: () => import("@/layouts/auth.vue"),
+    beforeEnter: mainAuth(),
     children: [
       {
         path: "/auth/login",
@@ -25,6 +27,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     component: () => import("@/layouts/main.vue"),
+    beforeEnter: authentication(),
     children: [
       {
         path: "/main",

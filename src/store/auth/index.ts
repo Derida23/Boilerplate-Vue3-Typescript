@@ -9,6 +9,7 @@ export const useAuthStore = defineStore("auth", {
   state: (): IAuth => {
     return {
       user: null,
+      fetcher: false,
       loading: false,
       error: false,
       error_notification: [],
@@ -52,6 +53,7 @@ export const useAuthStore = defineStore("auth", {
         params: { access_token: Cookies.get("session") },
         onSuccess: (res: IAuthRes<IUser>) => {
           this.user = res.user;
+          this.fetcher = true
           this.loading = false;
         },
         onError: (err) => {

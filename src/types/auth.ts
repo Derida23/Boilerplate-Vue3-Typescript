@@ -1,5 +1,6 @@
 export interface IAuth {
   user: IUser | null;
+  fetcher: boolean,
   loading: boolean;
   error: boolean;
   error_notification: unknown | Array<string>;
