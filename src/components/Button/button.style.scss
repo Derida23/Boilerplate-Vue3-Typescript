@@ -50,11 +50,19 @@ $variants: "privy", "reset";
     &.loading {
       @apply opacity-50;
     }
-    
+
     &:disabled {
       @apply opacity-50;
       @apply cursor-not-allowed;
       @apply pointer-events-none;
+    }
+
+    .loading-animation {
+      @apply animate-spin;
+      @apply h-5;
+      @apply w-5;
+      @apply text-white;
+      @apply inline-block;
     }
   }
 }
