@@ -2,7 +2,7 @@
 import TextInput from "@/components/Input";
 import Button from "@/components/Button";
 import { Form, FormContext } from "vee-validate";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { IForm } from "./login.type";
 import schema from "@/validations/loginSchema";
 import { useAuthStore } from "@/store/auth";
@@ -13,7 +13,7 @@ import { useToast } from "vue-toastification";
 const form = ref<FormContext>();
 
 const { login } = useAuthStore();
-const { user } = storeToRefs(useAuthStore());
+const { error, error_notification } = storeToRefs(useAuthStore());
 const router = useRouter();
 const toast = useToast();
 
@@ -26,14 +26,20 @@ const onLogin = async (value: Record<string, unknown>): Promise<void> => {
     device_type: 2,
   };
 
-  await login(data);
+  const res = await login(data);
 
-  if (user) {
+  if (res) {
+    toast.success("Success login!");
     router.push({ path: "/profile" });
-  } else {
   }
-  toast.success("My toast content");
 };
+
+watch(error, async (value) => {
+  if (value) {
+    toast.error(error_notification.value[0]);
+    error.value = false;
+  }
+});
 </script>
 
 <template>

@@ -38,7 +38,7 @@ export default function useAxios<T>() {
     error: null,
   });
 
-  async function request({
+  async function fetch({
     url,
     method = "GET",
     data = null,
@@ -60,6 +60,7 @@ export default function useAxios<T>() {
       result.data = axiosResponse.data.data;
 
       onSuccess(result.data);
+      return true
     } catch (err) {
       result.status = Status.ERROR;
 
@@ -72,8 +73,9 @@ export default function useAxios<T>() {
       result.error = error;
 
       onError(error);
+      return false
     }
   }
 
-  return { ...result, request };
+  return { ...result, fetch };
 }

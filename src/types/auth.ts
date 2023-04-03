@@ -3,7 +3,7 @@ export interface IAuth {
   fetcher: boolean,
   loading: boolean;
   error: boolean;
-  error_notification: unknown | Array<string>;
+  error_notification: Array<string>;
 }
 
 export interface IAuthRes<T> {

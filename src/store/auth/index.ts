@@ -16,50 +16,50 @@ export const useAuthStore = defineStore("auth", {
     };
   },
   getters: {
-    isAuthenticated: (state) => !!state.user
+    isAuthenticated: (state) => !!state.user,
   },
   actions: {
-    async login(params: IForm): Promise<void> {
+    async login(params: IForm): Promise<boolean> {
       this.loading = true;
 
-      const { request } = useAxios();
+      const { fetch } = useAxios();
 
-      await request({
+      const result = await fetch({
         url: API.login,
         method: "POST",
         params,
-        onSuccess: async (res: IAuthRes<ILogin>): Promise<boolean> => {
-          const token: string = res.user.access_token;
+        onSuccess: async (res: IAuthRes<ILogin>): Promise<void> => {
+          const token = res.user.access_token;
           Cookies.set("session", token, { expires: 7, path: "/" });
 
           await this.credential();
           this.loading = false;
-
-          return true
         },
-        onError: (err) => {
+        onError: (err): void => {
           this.error = true;
           this.error_notification = err.message;
           this.loading = false;
         },
       });
+
+      return result
     },
     async credential() {
       this.loading = true;
 
-      const { request } = useAxios();
+      const { fetch } = useAxios();
 
-      await request({
+      await fetch({
         url: API.credential,
         method: "GET",
         params: { access_token: Cookies.get("session") },
-        onSuccess: (res: IAuthRes<IUser>) => {
+        onSuccess: (res: IAuthRes<IUser>): void => {
           this.user = res.user;
-          this.fetcher = true
+          this.fetcher = true;
           this.loading = false;
         },
-        onError: (err) => {
-          this.fetcher = false
+        onError: (err): void => {
+          this.fetcher = false;
           this.error = true;
           this.error_notification = err.message;
           this.loading = false;
