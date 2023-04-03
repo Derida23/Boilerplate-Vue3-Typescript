@@ -1,8 +1,8 @@
 .logo {
   @apply flex;
   @apply items-center;
-  @apply pl-[100px];
-  @apply pt-[100px];
+  // @apply pl-[100px];
+  // @apply pt-[100px];
   @apply mb-6;
 
   &-privy {
@@ -22,6 +22,7 @@
 .auth-wrapper {
   @apply grid;
   @apply grid-cols-2;
+  @apply pt-[100px];
 
   .info-section {
     @apply flex;

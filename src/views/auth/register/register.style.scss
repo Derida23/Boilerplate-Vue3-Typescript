@@ -1,0 +1,26 @@
+.register {
+  &-title {
+    @apply my-6;
+
+    h1 {
+      @apply font-semibold;
+      @apply text-[16px];
+    }
+
+    p {
+      @apply text-[14px];
+      @apply text-slate-500;
+      @apply mt-2;
+    }
+  }
+
+  &-subtitle {
+    @apply font-semibold;
+    @apply text-[16px];
+    @apply mb-6;
+  }
+
+  &-form {
+
+  }
+}

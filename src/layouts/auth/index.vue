@@ -39,15 +39,13 @@ const today = computed(() => {
 </script>
 
 <template>
-  <div>
-    <div class="logo">
-      <PrivyIcon height="38" width="60" class="logo-privy" />
-      <p class="logo-text">PRISIGN</p>
-    </div>
-  </div>
   <div class="auth-wrapper">
     <div class="info-section">
       <div class="info-box">
+        <div class="logo">
+          <PrivyIcon height="38" width="60" class="logo-privy" />
+          <p class="logo-text">PRISIGN</p>
+        </div>
         <p class="auth-title">Welcome to Prisign</p>
         <p class="auth-description">
           Prisign is a personal data platform that allows users to manage and

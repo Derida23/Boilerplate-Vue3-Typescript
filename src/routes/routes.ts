@@ -4,7 +4,7 @@ import { RouteRecordRaw } from "vue-router";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/auth",
-    component: () => import("@/layouts/auth.vue"),
+    component: () => import("@/layouts/auth/index.vue"),
     name: "auth",
     beforeEnter: authGuard,
     redirect: {
