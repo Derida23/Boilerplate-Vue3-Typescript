@@ -1,0 +1,42 @@
+.select {
+  @apply w-full;
+  @apply mb-2;
+
+  label {
+    @apply text-[14px];
+    @apply mb-2;
+  }
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    @apply appearance-none;
+
+    background: url("../../assets/icon/arrow-icon.svg") white no-repeat 98.5% !important;
+    background: url("../../assets/icon/arrow-icon.svg") white no-repeat
+      calc(100% - 10px) !important;
+
+    @apply w-full;
+    @apply h-[40px];
+    @apply px-[8px];
+    @apply py-[10px];
+    @apply text-[13px];
+    @apply border-b;
+    @apply border-gray-500;
+
+    &:focus {
+      @apply outline-0;
+      @apply border-b;
+      @apply border-gray-500;
+      @apply border-primary;
+    }
+
+    &::placeholder {
+      @apply text-[13px];
+    }
+
+    &::-ms-expand {
+      @apply hidden;
+    }
+  }
+}

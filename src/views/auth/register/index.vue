@@ -1,4 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import TextInput from "@/components/Input";
+import Select from "@/components/Select";
+</script>
 
 <template>
   <div class="register">
@@ -8,9 +11,21 @@
     </div>
     <p class="register-subtitle">Account Detail</p>
     <div class="register-form">
-      <p>ini form</p>
+      <Select />
+      <TextInput
+        type="tel"
+        label="Phone Number"
+        name="phone_number"
+        placeholder="ex: 085725637261"
+      />
+      <TextInput
+        type="password"
+        label="Password"
+        name="password"
+        placeholder="Password"
+      />
     </div>
   </div>
 </template>
 
-<style src="./register.style.scss"></style>
+<style src="./register.style.scss" lang="scss"></style>

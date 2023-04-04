@@ -37,4 +37,4 @@ const onTabChange = (value: string | number) => {
   </div>
 </template>
 
-<style src="./tabs.style.scss"></style>
+<style src="./tabs.style.scss" lang="scss"></style>

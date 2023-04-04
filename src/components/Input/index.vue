@@ -84,4 +84,4 @@ const inputType = computed<string>(() => {
   </Field>
 </template>
 
-<style src="./input.style.scss"></style>
+<style src="./input.style.scss" lang="scss"></style>

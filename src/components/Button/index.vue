@@ -66,4 +66,4 @@ const onClick = (event: Event) => {
   </div>
 </template>
 
-<style src="./button.style.scss"></style>
+<style src="./button.style.scss" lang="scss"></style>

@@ -77,4 +77,4 @@ watch(error, async (value) => {
   </Form>
 </template>
 
-<style src="./login.style.scss"></style>
+<style src="./login.style.scss" lang="scss"></style>
