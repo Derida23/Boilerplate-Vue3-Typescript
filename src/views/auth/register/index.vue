@@ -5,17 +5,40 @@ import Button from "@/components/Button";
 import country from "@/constant/country";
 import { Form, FormContext } from "vee-validate";
 import { ref } from "vue";
+import { IForm } from "./register.type";
+import { useToast } from "vue-toastification";
+import { useAuthStore } from "@/store/auth";
+import schema from "@/validations/registerSchema";
 
 const form = ref<FormContext>();
+const { register } = useAuthStore();
+const toast = useToast();
 
 const onRegister = async (value: Record<string, unknown>): Promise<void> => {
-  console.log(value);
+  const data: IForm = {
+    phone: value.phone_number,
+    password: value.password,
+    country: value.country,
+    latlong: 0,
+    device_token: Math.floor(Math.random() * (100 - 10 + 1)) + 10,
+    device_type: 2,
+  };
+
+  const res = await register(data);
+
+  if (res) {
+    toast.success("Success register!");
+  }
 };
 </script>
 
 <template>
-  <Form @submit="onRegister" ref="form" v-slot="{ isSubmitting }">
-    <!-- :validation-schema="schema" -->
+  <Form
+    @submit="onRegister"
+    ref="form"
+    v-slot="{ isSubmitting }"
+    :validation-schema="schema"
+  >
     <div class="register">
       <div class="register-title">
         <h1>Create New Account</h1>

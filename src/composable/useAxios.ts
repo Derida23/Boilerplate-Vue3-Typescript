@@ -63,8 +63,9 @@ export default function useAxios<T>() {
       return true
     } catch (err) {
       result.status = Status.ERROR;
-
+      
       const { response } = err as AxiosError | any;
+      console.log('eerrrorr -> ', response)
 
       const error: ErrorType = {
         message: response?.data.error.errors,

@@ -1,26 +1,14 @@
 {
-"id": "SG81925",
-"name": "SG81925",
-"level": 1,
-"age": null,
-"birthday": null,
-"gender": null,
-"zodiac": null,
-"hometown": null,
-"bio": null,
-"latlong": "62",
-"education": {
-"school_name": null,
-"graduation_time": null
-},
-"career": {
-"company_name": null,
-"starting_from": null,
-"ending_in": null
-},
-"user_pictures": [],
-"user_picture": null,
-"cover_picture": {
-"url": null
-}
+  "id": "2980f859-2257-4149-807d-c830aad4c269",
+  "phone": "21",
+  "user_status": "pending",
+  "user_type": "normal_user",
+  "sugar_id": "SG65041",
+  "country": "Afghanistan",
+  "latlong": null,
+  "user_device": {
+    "device_token": "82",
+    "device_type": "web",
+    "device_status": "grant"
+  }
 }

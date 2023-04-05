@@ -7,6 +7,13 @@
     @apply mb-2;
   }
 
+  &.has-error {
+    .select-component {
+      @apply border-privy;
+      @apply animate-shake;
+    }
+  }
+
   select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -38,6 +45,5 @@
     &::-ms-expand {
       @apply hidden;
     }
-    
   }
 }

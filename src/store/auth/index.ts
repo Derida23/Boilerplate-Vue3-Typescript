@@ -1,7 +1,8 @@
 import useAxios from "@/composable/useAxios";
 import { defineStore } from "pinia";
-import { IAuth, IAuthRes, IUser, ILogin } from "@/types/auth";
-import { IForm } from "@/views/auth/login/login.type";
+import { IAuth, IAuthRes, IUser, ILogin, IRegister } from "@/types/auth";
+import { IForm as IFormRegister } from "@/views/auth/register/register.type";
+import { IForm as IFormLogin } from "@/views/auth/login/login.type";
 import Cookies from "js-cookie";
 import { API } from "@/utils/api";
 
@@ -19,7 +20,7 @@ export const useAuthStore = defineStore("auth", {
     isAuthenticated: (state) => !!state.user,
   },
   actions: {
-    async login(params: IForm): Promise<boolean> {
+    async login(params: IFormLogin): Promise<boolean> {
       this.loading = true;
 
       const { fetch } = useAxios();
@@ -42,7 +43,7 @@ export const useAuthStore = defineStore("auth", {
         },
       });
 
-      return result
+      return result;
     },
     async credential() {
       this.loading = true;
@@ -60,6 +61,51 @@ export const useAuthStore = defineStore("auth", {
         },
         onError: (err): void => {
           this.fetcher = false;
+          this.error = true;
+          this.error_notification = err.message;
+          this.loading = false;
+        },
+      });
+    },
+    async register(params: IFormRegister): Promise<boolean> {
+      this.loading = true;
+
+      const { fetch } = useAxios();
+
+      const result = await fetch({
+        url: API.register,
+        method: "POST",
+        params,
+        onSuccess: async (res: IAuthRes<IRegister>): Promise<void> => {
+          await this.requestOTP(params.phone);
+
+          this.loading = false;
+        },
+        onError: (err): void => {
+          this.error = true;
+          this.error_notification = err.message;
+          this.loading = false;
+        },
+      });
+
+      return result;
+    },
+    async requestOTP(params: string | unknown) {
+      this.loading = true;
+      console.log(params);
+
+      const { fetch } = useAxios();
+
+      await fetch({
+        url: API.request_otp,
+        method: "POST",
+        params: { phone: params },
+        onSuccess: async (res: IAuthRes<IRegister>): Promise<void> => {
+          console.log(res);
+
+          this.loading = false;
+        },
+        onError: (err): void => {
           this.error = true;
           this.error_notification = err.message;
           this.loading = false;

@@ -26,9 +26,9 @@ const props = defineProps({
 <template>
   <div class="select">
     <Field v-slot="{ field, errors }" :label="label" :name="name">
-      <div class="select-wrapper">
+      <div>
         <label>{{ label }}</label>
-        <select v-bind="field" :name="name" :id="id">
+        <select v-bind="field" :name="name" :id="id" class="select-component">
           <option value="" data-default hidden>Choose your country</option>
           <option v-for="item in data" :key="item.value" :value="item.value">
             {{ item.label }}
