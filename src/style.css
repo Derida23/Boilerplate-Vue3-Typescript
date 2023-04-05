@@ -19,3 +19,12 @@
   @apply translate-x-8;
   @apply opacity-0;
 }
+
+.error {
+  @apply mt-1;
+  @apply flex;
+  @apply text-privy;
+  @apply text-xs;
+  @apply items-center;
+  @apply animate-shake;
+}

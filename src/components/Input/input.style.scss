@@ -53,17 +53,4 @@
       }
     }
   }
-
-  .error {
-    @apply mt-1;
-    @apply flex;
-    @apply text-privy;
-    @apply text-xs;
-    @apply items-center;
-    @apply animate-shake;
-
-    .error-icon {
-      @apply mr-2;
-    }
-  }
 }
