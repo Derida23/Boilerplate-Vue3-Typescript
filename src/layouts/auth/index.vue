@@ -36,6 +36,16 @@ watch(route, (value) => {
 const today = computed(() => {
   return format(new Date(), "MMM dd, yyyy");
 });
+
+const isOtp = computed((): boolean => {
+  const otp_url = route.path;
+
+  if (otp_url.includes("otp")) {
+    return true;
+  }
+
+  return false;
+});
 </script>
 
 <template>
@@ -60,7 +70,7 @@ const today = computed(() => {
       <div class="card-box">
         <p class="card-today">Today {{ today }}</p>
         <div class="card-content">
-          <Tabs :options="tabOptions" v-model="activeTab" />
+          <Tabs v-if="!isOtp" :options="tabOptions" v-model="activeTab" />
           <router-view v-slot="{ Component }">
             <transition name="slide-fade">
               <component :is="Component" />

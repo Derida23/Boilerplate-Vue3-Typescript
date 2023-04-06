@@ -22,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/auth/register/index.vue"),
       },
       {
-        path: "/otp",
+        path: "/auth/otp",
         name: "otp",
         component: () => import("@/views/auth/otp/index.vue"),
       },

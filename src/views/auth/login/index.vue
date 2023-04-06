@@ -49,7 +49,7 @@ watch(error, async (value) => {
     :validation-schema="schema"
     v-slot="{ isSubmitting }"
   >
-    <div class="login-wrapper">
+    <div class="login">
       <div class="text-box">
         <p class="text-login">Login Account</p>
       </div>
