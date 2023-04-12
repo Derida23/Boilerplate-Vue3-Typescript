@@ -1,7 +1,26 @@
 .single-otp {
-  
+  input {
+    @apply appearance-none;
+    @apply outline-none;
+    @apply h-[50px];
+    @apply w-[50px];
+
+    @apply rounded-[10px];
+    @apply border;
+    @apply border-gray-500;
+    @apply text-[13px];
+    @apply text-center;
+
+    &:focus {
+      @apply border-primary;
+    }
+
+    &::placeholder {
+      text-align: center;
+    }
+  }
+
 }
 
 .otp {
-  
 }

@@ -92,7 +92,6 @@ export const useAuthStore = defineStore("auth", {
     },
     async requestOTP(params: string | unknown) {
       this.loading = true;
-      console.log(params);
 
       const { fetch } = useAxios();
 
@@ -101,7 +100,6 @@ export const useAuthStore = defineStore("auth", {
         method: "POST",
         params: { phone: params },
         onSuccess: async (res: IAuthRes<IRegister>): Promise<void> => {
-          console.log(res);
 
           this.loading = false;
         },

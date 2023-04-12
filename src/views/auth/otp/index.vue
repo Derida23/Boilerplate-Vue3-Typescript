@@ -18,12 +18,11 @@ const handleOnChange = (value: any) => {
       <p>Insert OTP code sent to your phone</p>
     </div>
     <div>
-      <div style="display: flex; flex-direction: row">
+      <div style="display: flex; flex-direction: row" class="mb-8">
         <InputOtp
           ref="otpInput"
           input-classes="otp-input error-input"
           input-type="string"
-          separator="-"
           :num-inputs="4"
           :should-auto-focus="true"
           :placeholder="['1', '2', '3', '4']"

@@ -13,14 +13,13 @@ const props = defineProps({
   },
   separator: {
     type: String,
-    default: "**",
+    default: "",
   },
   inputClasses: {
     type: String,
   },
   inputType: {
     type: String,
-    validator: (value: string) => ["number", "tel", "password"].includes(value),
   },
   shouldAutoFocus: {
     type: Boolean,
@@ -56,7 +55,6 @@ const emit = defineEmits([
   "on-complete",
 ]);
 
-// Helper to return OTP from input
 const checkFilledAllInputs = () => {
   if (otp.value.join("").length === props.numInputs) {
     return emit("on-complete", otp.value.join(""));
@@ -64,20 +62,18 @@ const checkFilledAllInputs = () => {
   return "Wait until the user enters the required number of characters";
 };
 
-// Focus on input by index
 const focusInput = (input: number) => {
   activeInput.value = Math.max(Math.min(props.numInputs - 1, input), 0);
 };
-// Focus on next input
+
 const focusNextInput = () => {
   focusInput(activeInput.value + 1);
 };
-// Focus on previous input
+
 const focusPrevInput = () => {
   focusInput(activeInput.value - 1);
 };
 
-// Change OTP value at focused input
 const changeCodeAtFocus = (value: number | string) => {
   oldOtp.value = Object.assign([], otp.value);
 
@@ -91,7 +87,6 @@ const changeCodeAtFocus = (value: number | string) => {
   }
 };
 
-// Handle pasted OTP
 const handleOnPaste = (event: any) => {
   event.preventDefault();
   const pastedData = event.clipboardData
@@ -124,7 +119,6 @@ const clearInput = () => {
   activeInput.value = 0;
 };
 
-// Handle cases of backspace, delete, left arrow, right arrow
 const handleOnKeyDown = (event: KeyboardEvent) => {
   switch (event.keyCode) {
     case BACKSPACE:
@@ -151,14 +145,14 @@ const handleOnKeyDown = (event: KeyboardEvent) => {
 </script>
 
 <template>
-  <div class="otp flex">
-    <input
+  <div class="otp w-full flex justify-between">
+    <!-- <input
       v-if="inputType === 'password'"
       autocomplete="off"
       name="hidden"
       type="'text'"
       class="hidden"
-    />
+    /> -->
     <SingleOtp
       v-for="(item, i) in numInputs"
       :key="i"

@@ -7,8 +7,9 @@ const props = defineProps({
     default: "tel",
   },
   value: {
-    type: [String, Number] as PropType<string | number>,
+    type: [String, Number],
     required: true,
+    default: "",
   },
   separator: {
     type: String,
@@ -119,27 +120,29 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="single-otp flex items-center">
-    <input
-      ref="input"
-      :type="type"
-      :placeholder="placeholder"
-      min="0"
-      max="9"
-      maxlength="1"
-      pattern="[0-9]"
-      v-model="model"
-      :disabled="disabled"
-      :class="inputClasses"
-      @input="onChange"
-      @keydown="onKeyDown"
-      @paste="onPaste"
-      @focus="onFocus"
-      @blur="onBlur"
-    />
-    <span v-if="!lastChild && separator">
-      <span v-html="separator"></span
-    ></span>
+  <div :class="{ 'w-1/4': !lastChild }">
+    <div class="single-otp flex items-center justify-between">
+      <input
+        ref="input"
+        :type="type"
+        :placeholder="placeholder"
+        min="0"
+        max="9"
+        maxlength="1"
+        pattern="[0-9]"
+        v-model="model"
+        :disabled="disabled"
+        :class="inputClasses"
+        @input="onChange"
+        @keydown="onKeyDown"
+        @paste="onPaste"
+        @focus="onFocus"
+        @blur="onBlur"
+      />
+      <span v-if="!lastChild && separator">
+        <span v-html="separator"></span
+      ></span>
+    </div>
   </div>
 </template>
 
